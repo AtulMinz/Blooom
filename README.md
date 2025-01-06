@@ -54,7 +54,7 @@ Any application deployed to [Lens Network Testnet](https://dev-preview.lens.xyz/
 [Here](https://jarv.is/notes/how-to-pull-request-fork-github/) is a tutorial with steps to Fork and Submit a PR.
 
 2. **PR Format:**
-   - **Project Name:**
+   - **Project Name: Bluum**
    - **Team Members:** (Name and Lens Handle)
    - **Project Description:**
    - **Source Code Link:**
