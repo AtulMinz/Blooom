@@ -1,66 +1,51 @@
-## Foundry
+# ZKsync Hardhat project template
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This project was scaffolded with [zksync-cli](https://github.com/matter-labs/zksync-cli).
 
-Foundry consists of:
+## Project Layout
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+- `/contracts`: Contains solidity smart contracts.
+- `/deploy`: Scripts for contract deployment and interaction.
+- `/test`: Test files.
+- `hardhat.config.ts`: Configuration settings.
 
-## Documentation
+## How to Use
 
-https://book.getfoundry.sh/
+- `npm run compile`: Compiles contracts.
+- `npm run deploy`: Deploys using script `/deploy/deploy.ts`.
+- `npm run interact`: Interacts with the deployed contract using `/deploy/interact.ts`.
+- `npm run test`: Tests the contracts.
 
-## Usage
+Note: Both `npm run deploy` and `npm run interact` are set in the `package.json`. You can also run your files directly, for example: `npx hardhat deploy-zksync --script deploy.ts`
 
-### Build
+### Environment Settings
 
-```shell
-$ forge build
+To keep private keys safe, this project pulls in environment variables from `.env` files. Primarily, it fetches the wallet's private key.
+
+Rename `.env.example` to `.env` and fill in your private key:
+
+```
+WALLET_PRIVATE_KEY=your_private_key_here...
 ```
 
-### Test
+### Network Support
 
-```shell
-$ forge test
-```
+`hardhat.config.ts` comes with a list of networks to deploy and test contracts. Add more by adjusting the `networks` section in the `hardhat.config.ts`. To make a network the default, set the `defaultNetwork` to its name. You can also override the default using the `--network` option, like: `hardhat test --network dockerizedNode`.
 
-### Format
+### Local Tests
 
-```shell
-$ forge fmt
-```
+Running `npm run test` by default runs the [ZKsync In-memory Node](https://docs.zksync.io/build/test-and-debug/in-memory-node) provided by the [@matterlabs/hardhat-zksync-node](https://docs.zksync.io/build/tooling/hardhat/hardhat-zksync-node) tool.
 
-### Gas Snapshots
+Important: ZKsync In-memory Node currently supports only the L2 node. If contracts also need L1, use another testing environment like Dockerized Node. Refer to [test documentation](https://docs.zksync.io/build/test-and-debug) for details.
 
-```shell
-$ forge snapshot
-```
+## Useful Links
 
-### Anvil
+- [Docs](https://docs.zksync.io/build)
+- [Official Site](https://zksync.io/)
+- [GitHub](https://github.com/matter-labs)
+- [Twitter](https://twitter.com/zksync)
+- [Discord](https://join.zksync.dev/)
 
-```shell
-$ anvil
-```
+## License
 
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+This project is under the [MIT](./LICENSE) license.
